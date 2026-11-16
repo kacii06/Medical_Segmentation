@@ -1,0 +1,14 @@
+model: segformer_b0
+pretrained: false
+checkpoint: null
+num_labels: 1
+
+data_dir: data/raw/Kvasir-SEG
+epochs: 20
+batch_size: 8
+img_size: 256
+lr: 0.0001
+weight_decay: 0.0001
+
+loss: bce_dice
+save_dir: experiments/segformer_b0_scratch/checkpoints

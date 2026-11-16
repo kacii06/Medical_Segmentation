@@ -1,0 +1,9 @@
+model: pretrained
+backbone: resnet34
+data_dir: data/raw/Kvasir-SEG
+epochs: 20
+batch_size: 8
+img_size: 256
+lr: 0.0001
+loss: bce_dice
+save_dir: experiments/unet_resnet34/checkpoints

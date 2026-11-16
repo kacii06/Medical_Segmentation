@@ -1,0 +1,11 @@
+﻿__pycache__/
+*.py[cod]
+data/
+checkpoints/
+results/
+experiments/*/checkpoints/
+experiments/comparison/results/
+.ipynb_checkpoints/
+.env
+venv/
+wandb/
