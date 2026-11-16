@@ -65,7 +65,7 @@ def evaluate_model(
 
 def main():
     parser = argparse.ArgumentParser(description="Compare U‑Net Scratch vs Pretrained")
-    parser.add_argument("--data_dir", type=str, default="data/kvasir", help="Dataset path")
+    parser.add_argument("--data_dir", type=str, default="data/kvasir-seg", help="Dataset path")
     parser.add_argument("--scratch_ckpt", type=str, default="checkpoints/best_unet_scratch.pth")
     parser.add_argument("--pretrained_ckpt", type=str, default="checkpoints/best_unet_pretrained_resnet34.pth")
     parser.add_argument("--backbone", type=str, default="resnet34")
@@ -123,8 +123,12 @@ def main():
     csv_path = os.path.join(args.out_dir, "comparison_results.csv")
     md_path = os.path.join(args.out_dir, "comparison_results.md")
     df.to_csv(csv_path, index=False, encoding="utf-8-sig")
-    with open(md_path, "w", encoding="utf-8") as f:
-        f.write(df.to_markdown(index=False))
+    try:
+        with open(md_path, "w", encoding="utf-8") as f:
+            f.write(df.to_markdown(index=False))
+    except Exception:
+        with open(md_path, "w", encoding="utf-8") as f:
+            f.write(df.to_string(index=False))
 
 if __name__ == "__main__":
     main()

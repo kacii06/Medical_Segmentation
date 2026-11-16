@@ -208,7 +208,7 @@ def visualize_predictions(
 def main() -> None:
     """CLI entry point for the visualization utilities."""
     parser = argparse.ArgumentParser(description="Visualize segmentation results")
-    parser.add_argument("--data_dir", type=str, default="data/sample_medical")
+    parser.add_argument("--data_dir", type=str, default="data/kvasir-seg")
     parser.add_argument("--scratch_ckpt", type=str, default="checkpoints/best_unet_scratch.pth")
     parser.add_argument(
         "--pretrained_ckpt",

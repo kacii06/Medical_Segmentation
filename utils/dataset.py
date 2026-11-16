@@ -116,6 +116,7 @@ def find_image_mask_pairs(data_dir: str) -> Tuple[List[str], List[str]]:
     for ext in valid_exts:
         all_images.extend(glob.glob(os.path.join(images_dir, ext)))
         all_images.extend(glob.glob(os.path.join(images_dir, ext.upper())))
+    all_images = sorted(list(set(all_images)))
 
     # Lọc bỏ các file mask nằm chung thư mục nếu có
     image_files = [f for f in all_images if "_mask" not in f.lower() and "_segmentation" not in f.lower()]
@@ -209,5 +210,5 @@ def get_dataloaders(
     val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=True)
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=True)
 
-    print(f"Dataset split: Train = {len(train_dataset)}, Val = {len(val_dataset)}, Test = {len(test_dataset)} (Tổng: {total_samples})")
+    print(f"Dataset split: Train = {len(train_dataset)}, Val = {len(val_dataset)}, Test = {len(test_dataset)} (Total: {total_samples})")
     return train_loader, val_loader, test_loader

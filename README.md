@@ -98,7 +98,7 @@ python download_sample_data.py --num_samples 60
 
 ### Bước 2: Huấn luyện U-Net Scratch (Cài từ đầu)
 ```powershell
-python train.py --model scratch --data_dir data/kvasir --epochs 20 --batch_size 8 --lr 1e-4
+python train.py --model scratch --data_dir data/kvasir-seg --epochs 20 --batch_size 8 --lr 1e-4
 ```
 *Mô hình sẽ tự động lưu checkpoint có Validation Dice cao nhất vào `checkpoints/best_unet_scratch.pth`.*
 
@@ -106,7 +106,7 @@ python train.py --model scratch --data_dir data/kvasir --epochs 20 --batch_size 
 
 ### Bước 3: Huấn luyện U-Net Pretrained Encoder (ResNet34)
 ```powershell
-python train.py --model pretrained --backbone resnet34 --data_dir data/sample_medical --epochs 20 --batch_size 8 --lr 1e-4
+python train.py --model pretrained --backbone resnet34 --data_dir data/kvasir-seg --epochs 20 --batch_size 8 --lr 1e-4
 ```
 *Mô hình sẽ tự động lưu checkpoint vào `checkpoints/best_unet_pretrained_resnet34.pth`.*
 
@@ -114,7 +114,7 @@ python train.py --model pretrained --backbone resnet34 --data_dir data/sample_me
 
 ### Bước 4: Đánh giá & Xuất bảng so sánh định lượng (Dice, IoU, FPS)
 ```powershell
-python evaluate.py --data_dir data/sample_medical
+python evaluate.py --data_dir data/kvasir-seg
 ```
 Lệnh này sẽ tự động chạy trên tập Test, so sánh cả 2 mô hình và in ra bảng tổng hợp:
 
@@ -129,7 +129,7 @@ Lệnh này sẽ tự động chạy trên tập Test, so sánh cả 2 mô hình
 
 ### Bước 5: Trực quan hóa mặt nạ dự đoán và biểu đồ học tập
 ```powershell
-python visualize.py --data_dir data/sample_medical
+python visualize.py --data_dir data/kvasir-seg
 ```
 - Kết quả đồ thị huấn luyện sẽ lưu tại: `results/learning_curves.png`
 - Kết quả mặt nạ so sánh sẽ lưu tại: `results/segmentation_comparison.png`
